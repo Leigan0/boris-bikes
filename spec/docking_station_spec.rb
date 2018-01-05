@@ -16,6 +16,7 @@ describe DockingStation do
 
   it {is_expected.to respond_to(:release_bike)}
   describe '#release_bike' do
+
     it 'releases a bike' do
       bike = Bike.new
       station.dock(bike)
@@ -29,6 +30,12 @@ describe DockingStation do
     end
     it 'will not release a bike if none available' do
       expect {station.release_bike}.to raise_error "No bikes available"
+    end
+    it 'will not release a broken bike' do
+      bike = Bike.new
+      bike.broken
+      station.dock(bike)
+      expect {station.release_bike}.to raise_error "No working bike available"
     end
   end
 
