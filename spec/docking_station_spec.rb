@@ -1,12 +1,16 @@
 require 'docking_station'
 
 describe DockingStation do
-  subject(:station) {DockingStation.new(:DEFAULT_CAPACITY)}
+  subject(:station) {DockingStation.new}
 
   describe '#initialize' do
     it 'sets a capacity' do
       station = DockingStation.new(40)
       expect(station.capacity).to eq 40
+    end
+    it 'defaults to DEFAULT_CAPACITY if no capacity argument given' do
+      docking_station = DockingStation.new
+      expect(docking_station.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
   end
 
